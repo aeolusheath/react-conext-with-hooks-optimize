@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+import Comp1 from './Com1';
+import { UserProvider } from './user';
+import './style.css';
 
 function App() {
+  const [number, setNumber] = useState(0);
+
+  const changeNumberHandler = () => {
+    setNumber(c => c + 1);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      The Main App Component {number}
+      <UserProvider>
+        {' '}
+        {/* Our Custom Provider */}
+        <Comp1 />
+      </UserProvider>
+      <button onClick={changeNumberHandler}>Changing Main Component Number 点击App.js里面的按钮，查看组件渲染情况 </button>
     </div>
   );
 }
